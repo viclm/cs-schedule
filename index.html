@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>客服排班系统</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>客服排班系统</h1>
+      <div class="controls">
+        <label for="month-select">生成月份</label>
+        <select id="month-select"></select>
+        <button id="btn-generate">生成排班</button>
+        <button id="btn-download" class="secondary">下载</button>
+      </div>
+    </header>
+
+    <div class="status-bar" id="data-status"></div>
+    <div class="status-bar">
+      <span id="prev-status"></span>
+      <span id="validation-status"></span>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead id="schedule-head"></thead>
+        <tbody id="schedule-body"></tbody>
+        <tfoot id="schedule-foot"></tfoot>
+      </table>
+    </div>
+
+    <div class="summary">
+      <div class="card">
+        <h3>每日人数</h3>
+        <div id="daily-summary"></div>
+      </div>
+      <div class="card">
+        <h3>上月衔接状态</h3>
+        <div id="prev-context"></div>
+      </div>
+    </div>
+
+    <div class="rules">
+      <h3>排班规则</h3>
+      <ul>
+        <li>Edison、Ethan、Harley、Zeyad 固定只上夜二；其余人员夜一/夜二约每 30 天轮换（上月已上 15 天夜一 → 本月再上 15 天夜一后转夜二）</li>
+        <li>夜一与夜二切换时，中间安排至少 2 天休息</li>
+        <li>每连续 7 天内至少有 1 天休息</li>
+        <li>所有休息前均保证至少连续 4 天上班</li>
+        <li>周六：夜一≥4，夜二≥7；周日：夜一≥4，夜二≥5；周一：夜一≥5，夜二≥5；平时：夜一≥5，夜二≥7</li>
+        <li>每月休息约 6 天（参考目标，人数不足时可减少）；每日人数必须达标</li>
+        <li>Ethan 尽量安排在周日、周一休息；Andrew、Chao、Harvey、Zeyad 尽量安排在周末休息</li>
+      </ul>
+    </div>
+
+    <div class="rules">
+      <h3>数据说明</h3>
+      <ul>
+        <li>排班数据保存在 <code>data/</code> 目录，每月一个 Excel 文件（如 2026-06.xlsx）</li>
+        <li>生成下个月排班时，自动读取上月 Excel 作为依据（班次阶段、衔接状态）</li>
+        <li>点击「下载」会保存到数据库并下载 Excel 文件</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/validator.js"></script>
+  <script src="js/scheduler.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
