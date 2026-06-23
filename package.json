@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "客服排班系统",
   "scripts": {
-    "start": "node server.js",
+    "start": "node local-server.js",
     "test": "node scripts/test-schedule.js"
   },
   "dependencies": {

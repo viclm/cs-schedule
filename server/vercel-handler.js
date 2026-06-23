@@ -1,4 +1,4 @@
-const { handleAPI } = require('../server/api-routes');
+const { handleAPI } = require('./api-routes');
 
 module.exports = async (req, res) => {
   try {
