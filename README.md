@@ -60,3 +60,28 @@ data/
 ```bash
 npm test
 ```
+
+## 部署到 Vercel
+
+### 控制台配置（必做）
+
+Settings → General → Build & Development Settings：
+
+| 配置项 | 值 |
+|--------|-----|
+| Framework Preset | **Other** |
+| Build Command | **留空** |
+| Output Directory | **留空** |
+| Install Command | `npm install` |
+
+Settings → **Redirects / Rewrites**：删除所有指向 `server.js` 的旧规则（若有）。
+
+### 验证
+
+部署完成后依次访问：
+
+1. `/api/hello` → 应返回 `ok`
+2. `/index.html` → 排班页面
+3. `/api/months` → JSON 数据
+
+若 `/api/hello` 也报 `FUNCTION_INVOCATION_FAILED`，说明项目路由配置未生效，需在 Vercel 删除项目后重新 Import 仓库。
