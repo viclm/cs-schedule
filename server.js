@@ -114,7 +114,7 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-if (require.main === module) {
+if (require.main === module && !process.env.VERCEL) {
   server.listen(PORT, () => {
     console.log(`排班系统: http://localhost:${PORT}`);
     console.log(`数据目录: ${db.DATA_DIR}`);
