@@ -1,11 +1,5 @@
 {
   "redirects": [
     { "source": "/", "destination": "/index.html", "permanent": false }
-  ],
-  "functions": {
-    "api/**/*.js": {
-      "includeFiles": "{data/**,public/js/config.js,server/**}",
-      "maxDuration": 30
-    }
-  }
+  ]
 }
