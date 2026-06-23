@@ -123,4 +123,5 @@ if (require.main === module) {
   });
 }
 
-module.exports = server;
+const serverless = require('serverless-http');
+module.exports = serverless(server);

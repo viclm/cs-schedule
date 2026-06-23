@@ -1,5 +1,16 @@
 {
-  "rewrites": [
-    { "source": "/api/:path*", "destination": "/api/:path*" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["data/**"]
+      }
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/server.js" },
+    { "handle": "filesystem" }
   ]
 }
