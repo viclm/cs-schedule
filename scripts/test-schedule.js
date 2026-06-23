@@ -4,7 +4,7 @@ const path = require('path');
 const vm = require('vm');
 
 const root = path.join(__dirname, '..');
-const ScheduleConfig = require(path.join(root, 'public/lib/config'));
+const ScheduleConfig = require(path.join(root, 'public/js/config'));
 
 function loadBrowserScript(filename) {
   const code = fs.readFileSync(path.join(root, 'public/js', filename), 'utf8');

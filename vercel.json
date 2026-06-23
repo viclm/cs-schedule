@@ -1,10 +1,8 @@
 {
-  "rewrites": [
-    { "source": "/", "destination": "/index.html" }
-  ],
   "functions": {
     "api/**/*.js": {
-      "includeFiles": "{data/**,public/lib/**,server/**}"
+      "includeFiles": "{data/**,public/js/config.js,server/**}",
+      "maxDuration": 30
     }
   }
 }
