@@ -4,10 +4,10 @@ const path = require('path');
 const vm = require('vm');
 
 const root = path.join(__dirname, '..');
-const ScheduleConfig = require(path.join(root, 'js/config'));
+const ScheduleConfig = require(path.join(root, 'public/js/config'));
 
 function loadBrowserScript(filename) {
-  const code = fs.readFileSync(path.join(root, 'js', filename), 'utf8');
+  const code = fs.readFileSync(path.join(root, 'public/js', filename), 'utf8');
   const sandbox = {
     window: { ScheduleConfig },
     ScheduleConfig,
@@ -28,7 +28,7 @@ const sSandbox = {
   module: { exports: {} },
   console,
 };
-vm.runInNewContext(fs.readFileSync(path.join(root, 'js', 'scheduler.js'), 'utf8'), sSandbox);
+vm.runInNewContext(fs.readFileSync(path.join(root, 'public/js', 'scheduler.js'), 'utf8'), sSandbox);
 const Validator = vSandbox.window.Validator;
 const Scheduler = sSandbox.window.Scheduler;
 

@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const XLSX = require('xlsx');
-const ScheduleConfig = require('../js/config');
+const ScheduleConfig = require('../public/js/config');
 
 const { SHIFT, MEMBERS, WEEKDAYS, toExcelDate } = ScheduleConfig;
 const BUNDLED_DATA = path.join(__dirname, '..', 'data');
