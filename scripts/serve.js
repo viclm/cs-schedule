@@ -3,10 +3,10 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const db = require('./server/db');
-const { handleAPI } = require('./server/api-routes');
+const db = require('../server/db');
+const { handleAPI } = require('../server/api-routes');
 
-const ROOT = path.join(__dirname, 'public');
+const ROOT = path.join(__dirname, '..', 'public');
 const PORT = process.env.PORT || 3456;
 
 const MIME = {
