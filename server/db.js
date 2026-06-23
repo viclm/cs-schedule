@@ -5,11 +5,22 @@ const XLSX = require('xlsx');
 const ScheduleConfig = require('../js/config');
 
 const { SHIFT, MEMBERS, WEEKDAYS, toExcelDate } = ScheduleConfig;
-const DATA_DIR = path.join(__dirname, '..', 'data');
+const BUNDLED_DATA = path.join(__dirname, '..', 'data');
+const DATA_DIR = process.env.VERCEL
+  ? path.join('/tmp', 'shift-scheduler-data')
+  : BUNDLED_DATA;
 const MEMBER_NAMES = new Set(MEMBERS.map(m => m.name));
 
 function ensureDataDir() {
-  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+  if (fs.existsSync(DATA_DIR)) return;
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+  if (process.env.VERCEL && fs.existsSync(BUNDLED_DATA)) {
+    for (const f of fs.readdirSync(BUNDLED_DATA)) {
+      if (/^\d{4}-\d{2}\.xlsx$/.test(f)) {
+        fs.copyFileSync(path.join(BUNDLED_DATA, f), path.join(DATA_DIR, f));
+      }
+    }
+  }
 }
 
 function filePath(year, month) {
